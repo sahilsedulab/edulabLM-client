@@ -160,7 +160,7 @@ export default function MindMap({ data }: Props) {
 
   const positions = calculateNodePositions();
 
-  const renderConnections = (node: MindMapNode, parentPos?: Position) => {
+  const renderConnections = (node: MindMapNode) => {
     if (!expanded.has(node.id) || !node.children) return null;
 
     const nodePos = positions.get(node.id);
@@ -206,7 +206,7 @@ export default function MindMap({ data }: Props) {
               repeatCount="indefinite"
             />
           </path>
-          {renderConnections(child, childPos)}
+          {renderConnections(child)}
         </g>
       );
     });

@@ -9,7 +9,7 @@ export default function AudioOverview({ text }: Props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const progressInterval = useRef<NodeJS.Timeout | null>(null);
+  const progressInterval = useRef<number | null>(null);
 
   useEffect(() => {
     return () => {

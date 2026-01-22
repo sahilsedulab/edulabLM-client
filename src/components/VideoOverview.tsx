@@ -12,7 +12,7 @@ export default function VideoOverview({ text }: Props) {
   const [isMuted, setIsMuted] = useState(false);
   const [isReading, setIsReading] = useState(false);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
-  const progressInterval = useRef<NodeJS.Timeout | null>(null);
+  const progressInterval = useRef<number | null>(null);
 
   // Parse the text into scenes
   const scenes = text.split(/Scene \d+:|Scene:|^\d+\./gm)
