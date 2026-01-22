@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Zap, Settings } from 'lucide-react';
-import axios from 'axios';
+import { api } from '../api/client';
 
 export default function AIProviderToggle() {
   const [provider, setProvider] = useState<'gemini' | 'ollama'>('gemini');
   const [loading, setLoading] = useState(false);
-  const [info, setInfo] = useState({ provider: '', model: '' });
 
   useEffect(() => {
     fetchProvider();
@@ -13,12 +12,8 @@ export default function AIProviderToggle() {
 
   const fetchProvider = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/api/settings/provider');
+      const response = await api.get('/settings/provider');
       setProvider(response.data.currentProvider);
-      setInfo({
-        provider: response.data.provider,
-        model: response.data.model
-      });
     } catch (error) {
       console.error('Failed to fetch provider:', error);
     }
@@ -27,14 +22,10 @@ export default function AIProviderToggle() {
   const switchProvider = async (newProvider: 'gemini' | 'ollama') => {
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:3001/api/settings/provider', {
+      const response = await api.post('/settings/provider', {
         provider: newProvider
       });
       setProvider(response.data.currentProvider);
-      setInfo({
-        provider: response.data.provider,
-        model: response.data.model
-      });
     } catch (error) {
       console.error('Failed to switch provider:', error);
       alert('Failed to switch AI provider');
@@ -52,7 +43,7 @@ export default function AIProviderToggle() {
         </div>
         
         <div className="flex items-center space-x-2 bg-white/5 rounded-xl p-1">
-          {/* Renamed LearnLM to Qwen 2.5 - using Gemini under the hood */}
+          {/* Using Qwen 2.5 branding (powered by Gemini under the hood) */}
           <button
             onClick={() => switchProvider('gemini')}
             disabled={loading}
@@ -68,7 +59,7 @@ export default function AIProviderToggle() {
             </div>
           </button>
           
-          {/* Commented out Ollama/Qwen option - only showing Gemini as "Qwen 2.5" */}
+          {/* Commented out Ollama option - only showing Qwen 2.5 */}
           {/* <button
             onClick={() => switchProvider('ollama')}
             disabled={loading}
@@ -85,12 +76,13 @@ export default function AIProviderToggle() {
           </button> */}
         </div>
         
-        {info.provider && (
+        {/* Info section hidden - not showing provider details */}
+        {/* {info.provider && (
           <div className="mt-3 text-xs text-white/60 text-center">
             <p>{info.provider}</p>
             <p className="text-white/40">{info.model}</p>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

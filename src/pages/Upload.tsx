@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Upload as UploadIcon, Loader2, FileText, Sparkles, Zap, Brain, BookOpen } from 'lucide-react';
-import { uploadDocument, processDocument, getDocument } from '../api/client';
-import axios from 'axios';
+import { uploadDocument, processDocument, getDocument, api } from '../api/client';
 
 export default function Upload() {
   const [uploading, setUploading] = useState(false);
@@ -51,8 +50,8 @@ export default function Upload() {
       setProcessing(true);
       setProgress(20);
 
-      // Create a document from the topic
-      const response = await axios.post('http://localhost:3001/api/documents/topic', {
+      // Create a document from the topic using the API client
+      const response = await api.post('/documents/topic', {
         topic: topicInput.trim()
       });
 
@@ -89,7 +88,7 @@ export default function Upload() {
           Transform Your Documents
         </h1>
         <p className="text-2xl text-white/80 mb-8 animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-          Upload a PDF and let AI generate mind maps, flashcards, quizzes, and more
+          Enter a Topic and let AI generate mind maps, flashcards, quizzes, and more
         </p>
 
         {/* Features Grid */}
