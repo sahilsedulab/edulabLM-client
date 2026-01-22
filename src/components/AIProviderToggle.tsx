@@ -52,6 +52,7 @@ export default function AIProviderToggle() {
         </div>
         
         <div className="flex items-center space-x-2 bg-white/5 rounded-xl p-1">
+          {/* Renamed LearnLM to Qwen 2.5 - using Gemini under the hood */}
           <button
             onClick={() => switchProvider('gemini')}
             disabled={loading}
@@ -63,11 +64,12 @@ export default function AIProviderToggle() {
           >
             <div className="flex items-center justify-center space-x-2">
               <Zap className="w-4 h-4" />
-              <span>LearnLM</span>
+              <span>Qwen 2.5</span>
             </div>
           </button>
           
-          <button
+          {/* Commented out Ollama/Qwen option - only showing Gemini as "Qwen 2.5" */}
+          {/* <button
             onClick={() => switchProvider('ollama')}
             disabled={loading}
             className={`flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${
@@ -80,7 +82,7 @@ export default function AIProviderToggle() {
               <Zap className="w-4 h-4" />
               <span>Qwen2.5</span>
             </div>
-          </button>
+          </button> */}
         </div>
         
         {info.provider && (

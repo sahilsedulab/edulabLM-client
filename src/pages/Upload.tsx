@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Upload as UploadIcon, Loader2, FileText, Sparkles, Zap, Brain, Type, BookOpen } from 'lucide-react';
+import { Upload as UploadIcon, Loader2, FileText, Sparkles, Zap, Brain, BookOpen } from 'lucide-react';
 import { uploadDocument, processDocument, getDocument } from '../api/client';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ export default function Upload() {
   const [uploading, setUploading] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [mode, setMode] = useState<'pdf' | 'text'>('pdf');
+  const [mode] = useState<'pdf' | 'text'>('text'); // Default to text mode, PDF upload commented out
   const [topicInput, setTopicInput] = useState('');
   const navigate = useNavigate();
 
@@ -115,7 +115,8 @@ export default function Upload() {
       </div>
 
       {/* Mode Toggle */}
-      <div className="flex justify-center mb-8 animate-scaleIn" style={{ animationDelay: '0.5s' }}>
+      {/* Commented out PDF upload option - using only topic input */}
+      {/* <div className="flex justify-center mb-8 animate-scaleIn" style={{ animationDelay: '0.5s' }}>
         <div className="inline-flex bg-white/10 backdrop-blur-xl rounded-2xl p-2 border border-white/20">
           <button
             onClick={() => setMode('pdf')}
@@ -144,11 +145,12 @@ export default function Upload() {
             </div>
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Upload/Input Area */}
       <div className="glass-dark rounded-3xl p-8 shadow-2xl border border-white/20 animate-scaleIn" style={{ animationDelay: '0.6s' }}>
-        {mode === 'pdf' ? (
+        {/* PDF upload mode commented out */}
+        {false && mode === 'pdf' ? (
           <label className={`
             flex flex-col items-center justify-center w-full h-80
             border-2 border-dashed rounded-2xl cursor-pointer

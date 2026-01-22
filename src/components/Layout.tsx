@@ -1,5 +1,6 @@
 import { Outlet, Link } from 'react-router-dom';
-import { Brain, Sparkles, Zap } from 'lucide-react';
+import { Sparkles, Zap } from 'lucide-react';
+import logo from '../assets/logo.jpg';
 
 export default function Layout() {
   return (
@@ -16,12 +17,16 @@ export default function Layout() {
             <Link to="/" className="flex items-center space-x-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity" />
-                <div className="relative p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl">
-                  <Brain className="w-8 h-8 text-white" />
+                <div className="relative rounded-xl overflow-hidden">
+                  <img 
+                    src={logo} 
+                    alt="EdulabLM Logo" 
+                    className="w-12 h-12 object-cover"
+                  />
                 </div>
               </div>
               <div>
-                <span className="text-2xl font-bold text-white">NotebookLM</span>
+                <span className="text-2xl font-bold text-white">EdulabLM</span>
                 <div className="flex items-center space-x-1 text-xs text-white/60">
                   <Zap className="w-3 h-3" />
                   <span>AI Powered</span>
